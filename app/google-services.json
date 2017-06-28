@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "529226757831",
+    "firebase_url": "https://animals-53766.firebaseio.com",
+    "project_id": "animals-53766",
+    "storage_bucket": "animals-53766.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529226757831:android:086d5992c552866e",
+        "android_client_info": {
+          "package_name": "com.example.michaeliverson.animalhouse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529226757831-aobk4vrno479cmkk9in44645rc7s9mok.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.michaeliverson.animalhouse",
+            "certificate_hash": "2c0baacc379e0e88ee65ebedb99e83d861db928f"
+          }
+        },
+        {
+          "client_id": "529226757831-s19l7rfq70bmm38n1ck1av1u983v5cf9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByZFtQ3eTQCg4a0Wg2bo-FTi1pNyy17VA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529226757831-s19l7rfq70bmm38n1ck1av1u983v5cf9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
