@@ -10,40 +10,46 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.michaeliverson.animalhouse.Utils.Animal;
+
 import java.util.ArrayList;
 
 /**
  * Created by michaeliverson on 6/28/17.
  */
 
-public class myListAdapter extends ArrayAdapter<String>
+public class myListAdapter extends ArrayAdapter<Animal>
 {
+
     private Activity context;
-    private String[] catagoires;
-    private ArrayList<byte[]> images;
+    private ArrayList<Animal> animals;
+    private TextView category;
     private ImageView image;
-    private TextView text;
 
-    public myListAdapter(Activity context,String [] catagoires,ArrayList<byte[]> images)
+
+    public myListAdapter(Activity context, ArrayList<Animal> animals)
     {
-        super(context,R.layout.categorylist,catagoires);
-        this.catagoires = catagoires;
-        this.images = images;
-
+        super(context,R.layout.categorylist,animals);
+        this.animals = animals;
+        this.context = context;
     }
 
     public View getView(int position, View view, ViewGroup parent) {
-        LayoutInflater inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.categorylist, null,true);
+
+        View rowView = view;
+        if (view == null) {
+            LayoutInflater inflater= (LayoutInflater) context.getSystemService(this.context.LAYOUT_INFLATER_SERVICE);
+            rowView = inflater.inflate(R.layout.categorylist,parent,false);
+        }
 
         // initialize
         this.image = (ImageView) rowView.findViewById(R.id.icon);
-        this.text = (TextView) rowView.findViewById(R.id.category);
+        this.category = (TextView) rowView.findViewById(R.id.category);
+        Animal animal = this.animals.get(position);
 
 
-        this.text.setText(catagoires[position]);
-        byte[] imagaDate = this.images.get(position);
-        Bitmap bmp = BitmapFactory.decodeByteArray(imagaDate, 0, imagaDate.length);
+        this.category.setText(animal.getCategory());
+        Bitmap bmp = BitmapFactory.decodeByteArray(animal.getPictureData(bytes), 0, animal.getPictureData(bytes).length);
         this.image.setImageBitmap(Bitmap.createScaledBitmap(bmp, image.getWidth(),
                 image.getHeight(), false));
         return rowView;

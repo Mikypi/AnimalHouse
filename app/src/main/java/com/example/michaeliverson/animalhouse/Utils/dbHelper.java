@@ -26,8 +26,8 @@ public class dbHelper extends SQLiteOpenHelper {
     private static final String ANIMAL_CATEGORY = "category";
     private static final String ANIMAL_PICTURE = "picture";
     private static final String ANIMAL_SOUND = "sound";
-    private static final String ANIMAL_PICTUREDATA = "pictureData";
-    private static final String ANIMAL_SOUNDDATA = "soundDATA";
+    private static final String ANIMAL_PICTUREDATA = "picturedata";
+    private static final String ANIMAL_SOUNDDATA = "sounddata";
 
     public dbHelper(Context context)
     {
@@ -41,8 +41,6 @@ public class dbHelper extends SQLiteOpenHelper {
                 ANIMAL_TYPE+ "TEXT PRIMARY KEY," +
                 ANIMAL_DESCIPTION + "TEXT," +
                 ANIMAL_CATEGORY  + "TEXT," +
-                ANIMAL_PICTURE + "TEXT," +
-                ANIMAL_SOUND + "TEXT," +
                 ANIMAL_PICTUREDATA +"BLOB," +
                 ANIMAL_SOUNDDATA + "BLOB" + ")";
         sqLiteDatabase.execSQL(CREATE_TABLE);
@@ -57,22 +55,22 @@ public class dbHelper extends SQLiteOpenHelper {
 
     public void saveAnimal (Animal Animal)
     {
+        SQLiteDatabase database = this.getWritableDatabase();
         try {
-            SQLiteDatabase database = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
             contentValues.put(ANIMAL_TYPE, Animal.getAnimal());
             contentValues.put(ANIMAL_DESCIPTION, Animal.getDescription());
             contentValues.put(ANIMAL_CATEGORY, Animal.getCategory());
             contentValues.put(ANIMAL_PICTURE, ANIMAL_PICTURE);
-            contentValues.put(ANIMAL_SOUND, Animal.getSound());
             contentValues.put(ANIMAL_SOUNDDATA,Animal.getSoundData());
             contentValues.put(ANIMAL_PICTUREDATA, Animal.getPictureData());
             database.insert(TABLE_NAME, null, contentValues);
-            database.close();
 
         }catch (Exception ex)
         {
             Log.d(TAG,ex.toString());
+        }finally {
+            database.close();
         }
 
     }
@@ -89,10 +87,8 @@ public class dbHelper extends SQLiteOpenHelper {
                 pets.setAnimal(cursor.getString(0));
                 pets.setDescription(cursor.getString(1));
                 pets.setCategory(cursor.getString(2));
-                pets.setPicture(cursor.getString(3));
-                pets.setSound(cursor.getString(4));
-                pets.setPictureData(cursor.getBlob(5));
-                pets.setSoundData(cursor.getBlob(6));
+                pets.setPictureData(cursor.getBlob(3));
+                pets.setSoundData(cursor.getBlob(4));
                 Animals.add(pets);
             } while (cursor.moveToNext());
         }catch(Exception ex)
@@ -118,10 +114,8 @@ public class dbHelper extends SQLiteOpenHelper {
                 pets.setAnimal(cursor.getString(0));
                 pets.setDescription(cursor.getString(1));
                 pets.setCategory(cursor.getString(2));
-                pets.setPicture(cursor.getString(3));
-                pets.setSound(cursor.getString(4));
-                pets.setPictureData(cursor.getBlob(5));
-                pets.setSoundData(cursor.getBlob(6));
+                pets.setPictureData(cursor.getBlob(3));
+                pets.setSoundData(cursor.getBlob(4));
                 Animals.add(pets);
             } while (cursor.moveToNext());
         }catch(Exception ex)
@@ -147,10 +141,8 @@ public class dbHelper extends SQLiteOpenHelper {
                 pets.setAnimal(cursor.getString(0));
                 pets.setDescription(cursor.getString(1));
                 pets.setCategory(cursor.getString(2));
-                pets.setPicture(cursor.getString(3));
-                pets.setSound(cursor.getString(4));
-                pets.setPictureData(cursor.getBlob(5));
-                pets.setSoundData(cursor.getBlob(6));
+                pets.setPictureData(cursor.getBlob(3));
+                pets.setSoundData(cursor.getBlob(4));
                 Animals.add(pets);
             } while (cursor.moveToNext());
         }catch(Exception ex)
@@ -165,7 +157,7 @@ public class dbHelper extends SQLiteOpenHelper {
 
     public Animal getAnimal(String animal)
     {
-        String query = "SELECT * FROM " + TABLE_NAME + "WHERE animal="+animal;
+        String query = "SELECT * FROM" + TABLE_NAME + "WHERE animal="+animal;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
 
@@ -175,10 +167,8 @@ public class dbHelper extends SQLiteOpenHelper {
             pet.setAnimal(cursor.getString(0));
             pet.setDescription(cursor.getString(1));
             pet.setCategory(cursor.getString(2));
-            pet.setPicture(cursor.getString(3));
-            pet.setSound(cursor.getString(4));
-            pet.setPictureData(cursor.getBlob(5));
-            pet.setSoundData(cursor.getBlob(6));
+            pet.setPictureData(cursor.getBlob(3));
+            pet.setSoundData(cursor.getBlob(4));
             return pet;
 
         }catch (Exception ex)
@@ -216,9 +206,19 @@ public class dbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT COUNT(*) FROM" + TABLE_NAME;
         Cursor cursor = db.rawQuery(query,null);
-        int to_retun = cursor.getInt(0);
-        cursor.close();
-        return to_retun;
+        int to_return = 0;
+
+        try
+        {
+            to_return= cursor.getInt(0);
+            cursor.close();
+        }catch (Exception ex)
+        {
+            Log.d(TAG,ex.toString());
+        }finally {
+            cursor.close();
+        }
+        return to_return;
     }
 }
 
