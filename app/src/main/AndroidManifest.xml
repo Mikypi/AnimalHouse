@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Categories"></activity>
+        <activity android:name=".Categories" />
+        <activity android:name=".Animals" />
+        <activity android:name=".Animal"></activity>
     </application>
 
 </manifest>

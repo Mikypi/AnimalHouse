@@ -34,7 +34,7 @@ public class Categories extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Animal pet = (Animal)adapterView.getItemAtPosition(i);
                 String category = pet.getCategory();
-                Intent intent = new Intent(Categories.this,Zoo.class);
+                Intent intent = new Intent(Categories.this,Animals.class);
                 intent.putExtra("CATEGORY",category);
                 startActivity(intent);
             }

@@ -61,9 +61,8 @@ public class dbHelper extends SQLiteOpenHelper {
             contentValues.put(ANIMAL_TYPE, Animal.getAnimal());
             contentValues.put(ANIMAL_DESCIPTION, Animal.getDescription());
             contentValues.put(ANIMAL_CATEGORY, Animal.getCategory());
-            contentValues.put(ANIMAL_PICTURE, ANIMAL_PICTURE);
             contentValues.put(ANIMAL_SOUNDDATA,Animal.getSoundData());
-            contentValues.put(ANIMAL_PICTUREDATA, Animal.getPictureData());
+            contentValues.put(ANIMAL_PICTUREDATA, Animal.getPicture());
             database.insert(TABLE_NAME, null, contentValues);
 
         }catch (Exception ex)
