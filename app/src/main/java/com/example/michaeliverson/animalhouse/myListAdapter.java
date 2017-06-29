@@ -46,10 +46,8 @@ public class myListAdapter extends ArrayAdapter<Animal>
         this.image = (ImageView) rowView.findViewById(R.id.icon);
         this.category = (TextView) rowView.findViewById(R.id.category);
         Animal animal = this.animals.get(position);
-
-
         this.category.setText(animal.getCategory());
-        Bitmap bmp = BitmapFactory.decodeByteArray(animal.getPictureData(bytes), 0, animal.getPictureData(bytes).length);
+        Bitmap bmp = BitmapFactory.decodeByteArray(animal.getPictureData(), 0, animal.getPictureData().length);
         this.image.setImageBitmap(Bitmap.createScaledBitmap(bmp, image.getWidth(),
                 image.getHeight(), false));
         return rowView;

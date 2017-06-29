@@ -26,8 +26,6 @@ public class loadDatabase extends Thread {
     private dbHelper _dbHelper;
 
 
-
-
     public loadDatabase(String name) {
         super(name);
         this.ThreadName = name;
@@ -38,11 +36,11 @@ public class loadDatabase extends Thread {
         super.run();
         try {
             loadAnimals();
-        }catch(Exception ex)
-        {
+        } catch (Exception ex) {
             Log.d(TAG, "run: " + ex.toString());
         }
     }
+
     private void loadAnimals() {
         final dbHelper db = this._dbHelper;
         this.db = FirebaseDatabase.getInstance();
@@ -63,7 +61,7 @@ public class loadDatabase extends Thread {
                     picture.getBytes(size).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
                         public void onSuccess(byte[] bytes) {
-                            pet.getPictureData(bytes);
+                            pet.setPictureData(bytes);
                             FirebaseStorage storage2 = FirebaseStorage.getInstance();
                             StorageReference sound = storage2.getReferenceFromUrl(soundUrl);
                             sound.getBytes(size).addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -78,6 +76,7 @@ public class loadDatabase extends Thread {
 
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -93,4 +92,5 @@ public class loadDatabase extends Thread {
     public void set_dbHelper(dbHelper _dbHelper) {
         this._dbHelper = _dbHelper;
     }
+
 }

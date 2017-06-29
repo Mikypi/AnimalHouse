@@ -41,7 +41,7 @@ public class Animal implements Serializable {
         this.sound = sound;
     }
 
-    public byte[] getPictureData(byte[] bytes) {
+    public byte[] getPictureData() {
         return pictureData;
     }
 
