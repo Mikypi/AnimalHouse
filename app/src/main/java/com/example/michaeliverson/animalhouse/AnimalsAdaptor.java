@@ -47,7 +47,7 @@ public class AnimalsAdaptor extends RecyclerView.Adapter<AnimalsAdaptor.MyViewHo
         public String toString() {
             return super.toString();
         }
-        
+
     }
 
     @Override

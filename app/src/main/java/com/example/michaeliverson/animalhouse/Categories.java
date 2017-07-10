@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.michaeliverson.animalhouse.Utils.Animal;
+import com.example.michaeliverson.animalhouse.Utils.Animalss;
 import com.example.michaeliverson.animalhouse.Utils.dbHelper;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Categories extends AppCompatActivity {
 
     private ListView list;
-    private  ArrayList<Animal> animal;
+    private  ArrayList<Animalss> animal;
     private String catagory;
 
     @Override
@@ -24,7 +24,7 @@ public class Categories extends AppCompatActivity {
         setContentView(R.layout.activity_categories);
 
         dbHelper helper = new dbHelper(this);
-        ArrayList<Animal> animals = helper.getAnimalCategory();
+        ArrayList<Animalss> animals = helper.getAnimalCategory();
         myListAdapter adapter=new myListAdapter(this, animals);
         list=(ListView)findViewById(R.id.list);
         list.setAdapter(adapter);
@@ -32,7 +32,7 @@ public class Categories extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Animal pet = (Animal)adapterView.getItemAtPosition(i);
+                Animalss pet = (Animalss)adapterView.getItemAtPosition(i);
                 String category = pet.getCategory();
                 Intent intent = new Intent(Categories.this,Animals.class);
                 intent.putExtra("CATEGORY",category);

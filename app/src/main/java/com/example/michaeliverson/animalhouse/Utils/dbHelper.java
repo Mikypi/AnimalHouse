@@ -53,7 +53,7 @@ public class dbHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void saveAnimal (Animal Animal)
+    public void saveAnimal (Animalss Animal)
     {
         SQLiteDatabase database = this.getWritableDatabase();
         try {
@@ -73,16 +73,16 @@ public class dbHelper extends SQLiteOpenHelper {
         }
 
     }
-    public ArrayList<Animal> getAnimals()
+    public ArrayList<Animalss> getAnimals()
     {
         String query ="SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
-        ArrayList<Animal> Animals = new ArrayList<>();
+        ArrayList<Animalss> Animals = new ArrayList<>();
 
         try {
             do {
-                Animal pets = new Animal();
+                Animalss pets = new Animalss();
                 pets.setAnimal(cursor.getString(0));
                 pets.setDescription(cursor.getString(1));
                 pets.setCategory(cursor.getString(2));
@@ -100,16 +100,16 @@ public class dbHelper extends SQLiteOpenHelper {
         return Animals; // there is nothing or an exception3
     }
 
-    public ArrayList<Animal> getAnimalCategory()
+    public ArrayList<Animalss> getAnimalCategory()
     {
         String query ="SELECT * FROM" + TABLE_NAME + "GROUP BY " + ANIMAL_CATEGORY;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
-        ArrayList<Animal> Animals = new ArrayList<>();
+        ArrayList<Animalss> Animals = new ArrayList<>();
 
         try {
             do {
-                Animal pets = new Animal();
+                Animalss pets = new Animalss();
                 pets.setAnimal(cursor.getString(0));
                 pets.setDescription(cursor.getString(1));
                 pets.setCategory(cursor.getString(2));
@@ -127,16 +127,16 @@ public class dbHelper extends SQLiteOpenHelper {
         return Animals; // there is nothing or an exception3
     }
 
-    public ArrayList<Animal> getAnimals(String catagory)
+    public ArrayList<Animalss> getAnimals(String catagory)
     {
         String query ="SELECT * FROM" + TABLE_NAME + "WHERE catagory =" + catagory;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
-        ArrayList<Animal> Animals = new ArrayList<>();
+        ArrayList<Animalss> Animals = new ArrayList<Animalss>();
 
         try {
             do {
-                Animal pets = new Animal();
+                Animalss pets = new Animalss();
                 pets.setAnimal(cursor.getString(0));
                 pets.setDescription(cursor.getString(1));
                 pets.setCategory(cursor.getString(2));
@@ -154,7 +154,7 @@ public class dbHelper extends SQLiteOpenHelper {
         return Animals; // there is nothing or an exception3
     }
 
-    public Animal getAnimal(String animal)
+    public Animalss getAnimal(String animal)
     {
         String query = "SELECT * FROM" + TABLE_NAME + "WHERE animal="+animal;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -162,7 +162,7 @@ public class dbHelper extends SQLiteOpenHelper {
 
         try
         {
-            Animal pet = new Animal();
+            Animalss pet = new Animalss();
             pet.setAnimal(cursor.getString(0));
             pet.setDescription(cursor.getString(1));
             pet.setCategory(cursor.getString(2));

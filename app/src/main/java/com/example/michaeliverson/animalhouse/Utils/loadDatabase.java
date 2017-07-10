@@ -1,5 +1,8 @@
 package com.example.michaeliverson.animalhouse.Utils;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,26 +21,43 @@ import static android.content.ContentValues.TAG;
  * Created by michaeliverson on 6/29/17.
  */
 
-public class loadDatabase extends Thread {
+public class loadDatabase implements Runnable {
 
     private FirebaseDatabase db;
     private DatabaseReference dbReference;
     private String ThreadName;
     private dbHelper _dbHelper;
+    private Handler handel;
+    private String message;
 
 
-    public loadDatabase(String name) {
-        super(name);
-        this.ThreadName = name;
+    public loadDatabase(dbHelper _dbHelper) {
+        this._dbHelper = _dbHelper;
+    }
+
+
+    // Start of the thread process
+    public void start()
+    {
+        Thread dbThread = new Thread(this,"Database");
+        dbThread.start();
     }
 
     @Override
     public void run() {
-        super.run();
-        try {
+        try
+        {
             loadAnimals();
-        } catch (Exception ex) {
-            Log.d(TAG, "run: " + ex.toString());
+            handel = new Handler(Looper.getMainLooper());
+            Message mesg = this.handel.obtainMessage();
+            mesg.obj = message;
+            handel.sendMessage(mesg);
+        }catch (Exception ex)
+        {
+            System.out.println(ex.toString());
+            Log.d(TAG,ex.toString());
+        }finally {
+            // do nothing
         }
     }
 
@@ -52,7 +72,7 @@ public class loadDatabase extends Thread {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot snapShot : dataSnapshot.getChildren()) {
-                    final Animal pet = snapShot.getValue(Animal.class);
+                    final Animalss pet = snapShot.getValue(Animalss.class);
                     String urlPicture = pet.getPicture();
                     final String soundUrl = pet.getSound();
                     final FirebaseStorage storage1 = FirebaseStorage.getInstance();
@@ -73,13 +93,13 @@ public class loadDatabase extends Thread {
                             });
                         }
                     });
-
                 }
+                message ="1";
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                message = "2";
             }
         };
     }

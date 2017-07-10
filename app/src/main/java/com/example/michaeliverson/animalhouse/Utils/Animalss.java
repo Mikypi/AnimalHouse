@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by michaeliverson on 6/27/17.
  */
 @IgnoreExtraProperties
-public class Animal implements Serializable {
+public class Animalss implements Serializable {
     private String Animal;
     private String Category;
     private String Description;
@@ -17,7 +17,7 @@ public class Animal implements Serializable {
     private String picture;
     private String sound;
 
-    public Animal(String animal, String category, String description, String picture, String sound, byte[] pictureData, byte[] soundData) {
+    public Animalss(String animal, String category, String description, String picture, String sound, byte[] pictureData, byte[] soundData) {
         Animal = animal;
         Category = category;
         Description = description;
@@ -57,7 +57,7 @@ public class Animal implements Serializable {
         this.soundData = soundData;
     }
 
-    public Animal()
+    public Animalss()
     {
 
     }
