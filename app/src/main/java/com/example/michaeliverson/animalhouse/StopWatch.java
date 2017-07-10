@@ -36,7 +36,7 @@ public class StopWatch extends FragmentActivity implements Runnable,StopStart.ca
         {
             do {
                 Thread.sleep(10);
-                time += 1.0f;
+                time += 10.0f;
                 Time = computeTime(time);
                 Message message  = new Message();
                 message.obj = Time;
