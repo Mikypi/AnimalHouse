@@ -137,7 +137,6 @@ public class StopWatch extends FragmentActivity implements Runnable,StopStart.ca
             this.stopStart = true;
             this.timer.start();
         }
-
     }
 
     @Override
