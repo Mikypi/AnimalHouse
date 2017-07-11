@@ -23,11 +23,9 @@ public class Animals extends AppCompatActivity {
     private RecyclerView recycle;
     private RecyclerView.LayoutManager layoutManager;
 
-    public Animals ()
+    public Animals()
     {
-
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +44,8 @@ public class Animals extends AppCompatActivity {
         this.recycle.setItemAnimator(new DefaultItemAnimator());
 
         String categorie = getIntent().getExtras().getString("CATEGORY");
-        ArrayList<Animalss>_animals = db.getAnimals(categorie)
 
-        this.adaptor = new Animals(_animals);
+        this.adaptor = new Animals(db.getAnimals(categorie));  // Can't fix error
         this.recycle.setAdapter(this.adaptor);
     }
 
@@ -67,7 +64,7 @@ public class Animals extends AppCompatActivity {
 
         private void getItem(View v)
         {
-            int itemS= recycle.getChildAdapterPosition(v);
+            int itemS =recycle.getChildAdapterPosition(v);
             RecyclerView.ViewHolder viewHolder =recycle.findViewHolderForAdapterPosition(itemS);
             TextView Name = (TextView) viewHolder.itemView.findViewById(R.id.animal);
             String SelectedName=(String) Name.getText();
