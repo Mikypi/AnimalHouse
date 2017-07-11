@@ -20,12 +20,12 @@ import java.util.ArrayList;
 
 public class AnimalsAdaptor extends RecyclerView.Adapter<AnimalsAdaptor.MyViewHolder> {
 
-    private ArrayList<Animalss> Animals;
+    private ArrayList<Animalss> animalsss;
     private Context context;
 
     public AnimalsAdaptor(ArrayList<Animalss> animals)
     {
-        this.Animals = animals;
+        this.animalsss = animals;
     }
 
 
@@ -41,13 +41,10 @@ public class AnimalsAdaptor extends RecyclerView.Adapter<AnimalsAdaptor.MyViewHo
             this.tvCatagorie = (TextView)itemView.findViewById(R.id.category);
             this.ivAnimal = (ImageView)itemView.findViewById(R.id.Animalphoto);
         }
-
-
         @Override
         public String toString() {
             return super.toString();
         }
-
     }
 
     @Override
@@ -64,9 +61,9 @@ public class AnimalsAdaptor extends RecyclerView.Adapter<AnimalsAdaptor.MyViewHo
         TextView animal = holder.tvAnimal;
         TextView categorie = holder.tvCatagorie;
 
-        categorie.setText(this.Animals.get(position).getAnimal());
-        animal.setText(this.Animals.get(position).getCategory());
-        byte[] imageData = this.Animals.get(position).getPictureData();
+        categorie.setText(this.animalsss.get(position).getAnimal());
+        animal.setText(this.animalsss.get(position).getCategory());
+        byte[] imageData = this.animalsss.get(position).getPictureData();
         Bitmap bmp = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
         image.setImageBitmap(Bitmap.createScaledBitmap(bmp, image.getWidth(),
                 image.getHeight(), false));
@@ -74,7 +71,7 @@ public class AnimalsAdaptor extends RecyclerView.Adapter<AnimalsAdaptor.MyViewHo
 
     @Override
     public int getItemCount() {
-        return this.Animals.size();
+        return this.animalsss.size();
     }
 }
 
