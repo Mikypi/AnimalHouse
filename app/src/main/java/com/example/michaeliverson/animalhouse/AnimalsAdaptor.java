@@ -3,6 +3,7 @@ package com.example.michaeliverson.animalhouse;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,12 +32,14 @@ public class AnimalsAdaptor extends RecyclerView.Adapter<AnimalsAdaptor.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder
     {
+        private CardView cv
         private TextView tvAnimal;
         private TextView tvCatagorie;
         private ImageView ivAnimal;
 
         public MyViewHolder(View itemView) {
             super(itemView);
+            this.cv = (CardView)itemView.findViewById(R.id.cvAnimal);
             this.tvAnimal = (TextView)itemView.findViewById(R.id.animal);
             this.tvCatagorie = (TextView)itemView.findViewById(R.id.category);
             this.ivAnimal = (ImageView)itemView.findViewById(R.id.Animalphoto);
@@ -49,7 +52,7 @@ public class AnimalsAdaptor extends RecyclerView.Adapter<AnimalsAdaptor.MyViewHo
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_animals, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.animalcardview, parent, false);
         view.setOnClickListener(com.example.michaeliverson.animalhouse.Animals.AnimalsOnClick);
         MyViewHolder mvh = new MyViewHolder(view);
         return mvh;
@@ -67,6 +70,11 @@ public class AnimalsAdaptor extends RecyclerView.Adapter<AnimalsAdaptor.MyViewHo
         Bitmap bmp = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
         image.setImageBitmap(Bitmap.createScaledBitmap(bmp, image.getWidth(),
                 image.getHeight(), false));
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
     }
 
     @Override
