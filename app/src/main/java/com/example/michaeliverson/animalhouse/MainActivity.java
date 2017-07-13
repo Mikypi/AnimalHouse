@@ -1,9 +1,11 @@
 package com.example.michaeliverson.animalhouse;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         // initialations
         dbHelper helper = new dbHelper(this);
+        helper.getWritableDatabase();
         this.moveForward = false;
 
         if(!checkDatabase())
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     super.handleMessage(msg);
                     String message = (String)msg.obj;
 
-                    if (message == "1")
+                    if (message.equals("1"))
                         moveForward = true;
                     else
                         moveForward = false;
@@ -58,6 +61,21 @@ public class MainActivity extends AppCompatActivity {
         }else
         {
             this.spinner.setVisibility(View.GONE);
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+            builder1.setMessage("There is Currently No Data To Display");
+            builder1.setCancelable(true);
+
+            builder1.setPositiveButton(
+                    "Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                            finish();
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
         }
 
     }
@@ -103,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     // Utilites
     public boolean checkDatabase()
     {
-        return (this.helper.numberOfRecords() >0) ? true:false;
+        return (this.helper.numberOfRecords() >0);
     }
 
 }

@@ -32,7 +32,7 @@ public class AnimalsAdaptor extends RecyclerView.Adapter<AnimalsAdaptor.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder
     {
-        private CardView cv
+        private CardView cv;
         private TextView tvAnimal;
         private TextView tvCatagorie;
         private ImageView ivAnimal;
@@ -52,7 +52,7 @@ public class AnimalsAdaptor extends RecyclerView.Adapter<AnimalsAdaptor.MyViewHo
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.animalcardview, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_animals, parent, false);
         view.setOnClickListener(com.example.michaeliverson.animalhouse.Animals.AnimalsOnClick);
         MyViewHolder mvh = new MyViewHolder(view);
         return mvh;

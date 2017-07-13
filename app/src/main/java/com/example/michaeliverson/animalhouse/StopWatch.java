@@ -2,7 +2,6 @@ package com.example.michaeliverson.animalhouse;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -12,6 +11,7 @@ public class StopWatch extends FragmentActivity implements Runnable,StopStart.ca
     private volatile Boolean stopStart = false;
     private Thread timer;
     private Fragment timeDisplay;
+    private Fragment controls;
     private String Time;
     private float time = 0.0f;
     private String seconds;
@@ -27,6 +27,7 @@ public class StopWatch extends FragmentActivity implements Runnable,StopStart.ca
         setContentView(R.layout.activity_stop_watch);
         this.timeDisplay = (TimerDisplay)
                 getSupportFragmentManager().findFragmentById(R.id.fgTimerDisplay);
+        this.controls = (StopStart)getSupportFragmentManager().findFragmentById(R.id.fgStopWatch);
     }
 
     @Override
@@ -90,9 +91,7 @@ public class StopWatch extends FragmentActivity implements Runnable,StopStart.ca
             hours = "0"+hours;
         }
 
-    	/* Although we are not using milliseconds on the timer in this example
-    	 * I included the code in the event that you wanted to include it on your own
-    	 */
+        // Compute milles
         milliseconds = String.valueOf((long)time);
         if(milliseconds.length()==2){
             milliseconds = "0"+milliseconds;
@@ -120,14 +119,18 @@ public class StopWatch extends FragmentActivity implements Runnable,StopStart.ca
             String time = (String)msg.obj;
             sendText(time);
         }
-    }
+    };
 
 
     public void sendText(String time)
     {
-        this.timeDisplay.placeText(time);
+        this.Time = time;
     }
 
+    public String sendTime()
+    {
+        return this.Time;
+    }
 
     @Override
     public void onStartButtonClick() {

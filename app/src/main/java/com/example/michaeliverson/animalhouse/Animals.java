@@ -10,10 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.michaeliverson.animalhouse.Utils.Animalss;
 import com.example.michaeliverson.animalhouse.Utils.dbHelper;
-
-import java.util.ArrayList;
 
 public class Animals extends AppCompatActivity {
 
@@ -45,7 +42,7 @@ public class Animals extends AppCompatActivity {
 
         String categorie = getIntent().getExtras().getString("CATEGORY");
 
-        this.adaptor = new Animals(db.getAnimals(categorie));  // Can't fix error
+        this.adaptor = new AnimalsAdaptor(db.getAnimals(categorie));  // Can't fix error
         this.recycle.setAdapter(this.adaptor);
     }
 

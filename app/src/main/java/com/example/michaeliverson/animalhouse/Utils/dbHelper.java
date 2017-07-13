@@ -38,11 +38,11 @@ public class dbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String CREATE_TABLE = "CREATE TABLE" +TABLE_NAME+ "(" +
-                ANIMAL_TYPE+ "TEXT PRIMARY KEY," +
-                ANIMAL_DESCIPTION + "TEXT," +
-                ANIMAL_CATEGORY  + "TEXT," +
-                ANIMAL_PICTUREDATA +"BLOB," +
-                ANIMAL_SOUNDDATA + "BLOB" + ")";
+                ANIMAL_TYPE+ "TEXT PRIMARY KEY, " +
+                ANIMAL_DESCIPTION + " TEXT, " +
+                ANIMAL_CATEGORY  + " TEXT, " +
+                ANIMAL_PICTUREDATA +" BLOB, " +
+                ANIMAL_SOUNDDATA + " BLOB " + ")";
         sqLiteDatabase.execSQL(CREATE_TABLE);
     }
 
@@ -132,7 +132,7 @@ public class dbHelper extends SQLiteOpenHelper {
         String query ="SELECT * FROM" + TABLE_NAME + "WHERE catagory =" + catagory;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
-        ArrayList<Animalss> Animals = new ArrayList<Animalss>();
+        ArrayList<Animalss> Animals = new ArrayList<>();
 
         try {
             do {

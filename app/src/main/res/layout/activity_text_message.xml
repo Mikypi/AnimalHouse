@@ -16,7 +16,7 @@
         />
 
     <EditText
-        android:id="@+id/PhoneNumber"
+        android:id="@+id/etPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
@@ -27,6 +27,6 @@
         android:layout_height="wrap_content"
         android:text="SEND"
         android:textSize="20sp"
-        android:onClick="onSwnd"
+        android:onClick="onSend"
         />
 </LinearLayout>

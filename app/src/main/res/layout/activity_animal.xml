@@ -9,16 +9,18 @@
 
     <ImageView
         android:id="@+id/ivAnimalImage"
-        android:layout_width="200sp"
-        android:layout_height="200sp"
-        android:layout_marginLeft="100sp"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_marginLeft="145sp"
         android:layout_marginTop="50sp"
         />
     <TextView
         android:id="@+id/tvanimalText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40sp"
-        android:layout_marginLeft="100sp"/>
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:textSize="10sp"
+        android:gravity="center"
+        android:layout_marginTop="20sp"
+        />
 
 </LinearLayout>
